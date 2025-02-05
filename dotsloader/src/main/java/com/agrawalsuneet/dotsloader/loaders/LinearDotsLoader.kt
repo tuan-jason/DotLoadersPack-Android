@@ -155,11 +155,14 @@ class LinearDotsLoader : DotsLoaderBaseView {
             }
 
             if (i + 1 == selectedDotPos) {
-                canvas.drawCircle(
+                selectedCirclePaint?.let {
+                    canvas.drawCircle(
                         xCor,
                         (if (expandOnSelect) this.selRadius else radius).toFloat(),
                         (if (expandOnSelect) this.selRadius else radius).toFloat(),
-                        selectedCirclePaint)
+                        it
+                    )
+                }
             } else if (showRunningShadow && i + 1 == firstShadowPos) {
                 canvas.drawCircle(
                         xCor,
@@ -173,11 +176,14 @@ class LinearDotsLoader : DotsLoaderBaseView {
                         radius.toFloat(),
                         secondShadowPaint)
             } else {
-                canvas.drawCircle(
+                defaultCirclePaint?.let {
+                    canvas.drawCircle(
                         xCor,
                         (if (expandOnSelect) this.selRadius else radius).toFloat(),
                         radius.toFloat(),
-                        defaultCirclePaint)
+                        it
+                    )
+                }
             }
 
         }

@@ -86,13 +86,21 @@ class CircularDotsLoader : CircularAbstractView {
         for (i in 0 until noOfDots) {
 
             if (i + 1 == selectedDotPos) {
-                canvas.drawCircle(dotsXCorArr[i], dotsYCorArr[i], radius.toFloat(), selectedCirclePaint)
+                selectedCirclePaint?.let {
+                    canvas.drawCircle(dotsXCorArr[i], dotsYCorArr[i], radius.toFloat(),
+                        it
+                    )
+                }
             } else if (this.showRunningShadow && i + 1 == firstShadowPos) {
                 canvas.drawCircle(dotsXCorArr[i], dotsYCorArr[i], radius.toFloat(), firstShadowPaint)
             } else if (this.showRunningShadow && i + 1 == secondShadowPos) {
                 canvas.drawCircle(dotsXCorArr[i], dotsYCorArr[i], radius.toFloat(), secondShadowPaint)
             } else {
-                canvas.drawCircle(dotsXCorArr[i], dotsYCorArr[i], radius.toFloat(), defaultCirclePaint)
+                defaultCirclePaint?.let {
+                    canvas.drawCircle(dotsXCorArr[i], dotsYCorArr[i], radius.toFloat(),
+                        it
+                    )
+                }
             }
 
         }
